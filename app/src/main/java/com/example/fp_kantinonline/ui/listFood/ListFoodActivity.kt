@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.IntentCompat.getParcelableExtra
@@ -13,6 +14,7 @@ import com.example.fp_kantinonline.data.remote.DataIconDashboard
 import com.example.fp_kantinonline.data.remote.DataListFood
 import com.example.fp_kantinonline.data.retrofit.APIConfig
 import com.example.fp_kantinonline.databinding.ActivityListFoodBinding
+import com.example.fp_kantinonline.ui.home.HomeActivity
 import com.example.fp_kantinonline.ui.listFood.adapter.RVListFoodAdapter
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -30,22 +32,27 @@ class ListFoodActivity : AppCompatActivity(), RVListFoodAdapter.OnItemClickListe
         binding = ActivityListFoodBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val foodName = intent.getStringExtra("content") ?: return
+        val foodName = intent.getStringExtra("content")
+        Log.d("ListFoodActivity", "Food: $foodName")
 
         val client = APIConfig.getAPIService()
         var listFood = mutableListOf<DataListFood>()
 
-        for (i in 0..20) {
+        for (i in 0..9) {
             client.getFoodImageRandom("${foodName}/${foodName}${i}.jpg").enqueue(object : Callback<ResponseBody> {
                 override fun onResponse(
                     call: Call<ResponseBody>,
                     response: Response<ResponseBody>
                 ) {
-                    response.body()?.let { responseBody ->
-                        val inputStream = responseBody.byteStream()
-                        val bitmap = BitmapFactory.decodeStream(inputStream)
-                        val dataFoodImageRandom = DataFoodImageRandom.fromBitmap(bitmap)
-                        listFood.add(DataListFood("${foodName}/${foodName}${i}", dataFoodImageRandom))
+                    if (response.isSuccessful) {
+                        response.body()?.let { responseBody ->
+                            val inputStream = responseBody.byteStream()
+                            val bitmap = BitmapFactory.decodeStream(inputStream)
+                            val dataFoodImageRandom = DataFoodImageRandom.fromBitmap(bitmap)
+                            listFood.add(DataListFood("${foodName} ke ${i + 1}", dataFoodImageRandom))
+                        }
+                    } else {
+                        TODO("Masih rusakkkkkkk aaaaaaaaaaa")
                     }
                 }
 
@@ -61,6 +68,10 @@ class ListFoodActivity : AppCompatActivity(), RVListFoodAdapter.OnItemClickListe
             rvList.setHasFixedSize(true)
             val adapter = RVListFoodAdapter(listFood)
             rvList.adapter = adapter.apply { listener = this@ListFoodActivity }
+            btnBack.setOnClickListener {
+                val intent = Intent(this@ListFoodActivity, HomeActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 

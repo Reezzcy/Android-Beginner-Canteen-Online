@@ -26,11 +26,11 @@ class DashboardFragment : Fragment(), RVIconAdapter.OnItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val listIconName = mutableListOf<String>("biryani", "burger", "butter-chicken", "desset", "dosa", "idly", "pasta", "pizza", "rice", "samosa")
+        val listIconName = mutableListOf<String>("biryani", "burger", "butter-chicken", "dessert", "dosa", "idly", "pasta", "pizza", "rice", "samosa")
         var listIconDashboard = mutableListOf<DataIconDashboard>()
 
         for (foodName in listIconName) {
-            val imageUrl = "https://foodish-api.com/images/${foodName}/${foodName}10.jpg"
+            val imageUrl = "https://foodish-api.com/images/${foodName}/${foodName}1.jpg"
             listIconDashboard.add(DataIconDashboard(foodName, imageUrl))
         }
 

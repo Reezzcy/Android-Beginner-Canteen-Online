@@ -20,7 +20,7 @@ data class DataFoodImageRandom(
         // Fungsi untuk mengonversi Bitmap ke ByteArray
         fun fromBitmap(bitmap: Bitmap): DataFoodImageRandom {
             val stream = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
             return DataFoodImageRandom(stream.toByteArray())
         }
     }

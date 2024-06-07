@@ -18,6 +18,7 @@
         app:layout_constraintBottom_toTopOf="@id/rv_list">
 
         <ImageView
+            android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"

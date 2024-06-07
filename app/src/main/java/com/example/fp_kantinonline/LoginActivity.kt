@@ -31,8 +31,8 @@ class LoginActivity : AppCompatActivity() {
                         Snackbar.LENGTH_SHORT
                     ).show()
                 } else {
-                    val moveHome = Intent(this@LoginActivity, ProfileFragment::class.java)
-                    intent.putExtra("name", username)
+                    val moveHome = Intent(this@LoginActivity, HomeActivity::class.java)
+                    moveHome.putExtra("name", username)
                     startActivity(moveHome)
                 }
             }

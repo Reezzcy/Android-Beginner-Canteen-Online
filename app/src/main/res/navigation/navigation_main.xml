@@ -23,6 +23,11 @@
     <fragment
         android:id="@+id/profile_fragment"
         android:name="com.example.fp_kantinonline.ui.home.profile.ProfileFragment"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile"
+        android:label="ProfileFragment">
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
 
 </navigation>
