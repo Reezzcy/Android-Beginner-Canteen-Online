@@ -1,27 +1,15 @@
 package com.example.fp_kantinonline.ui.listFood
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.IntentCompat.getParcelableExtra
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.fp_kantinonline.data.remote.DataFoodImageRandom
-import com.example.fp_kantinonline.data.remote.DataIconDashboard
 import com.example.fp_kantinonline.data.remote.DataListFood
 import com.example.fp_kantinonline.data.retrofit.APIConfig
 import com.example.fp_kantinonline.databinding.ActivityListFoodBinding
 import com.example.fp_kantinonline.ui.home.HomeActivity
 import com.example.fp_kantinonline.ui.listFood.adapter.RVListFoodAdapter
-import okhttp3.ResponseBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.io.File
-import java.io.FileOutputStream
 
 class ListFoodActivity : AppCompatActivity(), RVListFoodAdapter.OnItemClickListener {
     private lateinit var binding: ActivityListFoodBinding
@@ -38,29 +26,10 @@ class ListFoodActivity : AppCompatActivity(), RVListFoodAdapter.OnItemClickListe
         val client = APIConfig.getAPIService()
         var listFood = mutableListOf<DataListFood>()
 
-        for (i in 0..9) {
-            client.getFoodImageRandom("${foodName}/${foodName}${i}.jpg").enqueue(object : Callback<ResponseBody> {
-                override fun onResponse(
-                    call: Call<ResponseBody>,
-                    response: Response<ResponseBody>
-                ) {
-                    if (response.isSuccessful) {
-                        response.body()?.let { responseBody ->
-                            val inputStream = responseBody.byteStream()
-                            val bitmap = BitmapFactory.decodeStream(inputStream)
-                            val dataFoodImageRandom = DataFoodImageRandom.fromBitmap(bitmap)
-                            listFood.add(DataListFood("${foodName} ke ${i + 1}", dataFoodImageRandom))
-                        }
-                    } else {
-                        TODO("Masih rusakkkkkkk aaaaaaaaaaa")
-                    }
-                }
-
-                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                    Toast.makeText(this@ListFoodActivity, "onFailure: FAILURE!", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            })
+        for (i in 1..10) {
+            listFood.add(DataListFood("${foodName} ${i}",
+                "Restaurant ${foodName} ${i}",
+                "https://foodish-api.com/images/${foodName}/${foodName}${i}.jpg"))
         }
 
         with (binding) {

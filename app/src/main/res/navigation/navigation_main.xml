@@ -27,7 +27,8 @@
         android:label="ProfileFragment">
         <argument
             android:name="name"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue="Username" />
     </fragment>
 
 </navigation>

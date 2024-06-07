@@ -6,11 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fp_kantinonline.R
+import com.example.fp_kantinonline.data.remote.DataCart
+import com.example.fp_kantinonline.data.remote.DataIconDashboard
 import com.example.fp_kantinonline.data.retrofit.APIConfig
 import com.example.fp_kantinonline.databinding.FragmentCartBinding
 import com.example.fp_kantinonline.databinding.FragmentDashboardBinding
 import com.example.fp_kantinonline.ui.home.HomeActivity
+import com.example.fp_kantinonline.ui.home.dashboard.RVIconAdapter
+import com.example.fp_kantinonline.ui.listFood.ListFoodActivity
 import okhttp3.ResponseBody
 
 class CartFragment : Fragment() {
@@ -24,31 +30,19 @@ class CartFragment : Fragment() {
         return binding.root
     }
 
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//        val client = APIConfig.getAPIService()
-//        client.getFoodImageRandom().enqueue(object : Callback<ResponseBody> {
-//            override fun onResponse(
-//                call: Call<ResponseBody>,
-//                response: Response<ResponseBody>
-//            ) {
-//                if (response.isSuccessful) {
-//                    val name:  = response.body() ?: arrayListOf()
-//
-//                    with(binding) {
-//                        rvCharacter.setHasFixedSize(true)
-//                        rvCharacter.layoutManager= LinearLayoutManager(requireContext())
-//                        rvCharacter.adapter = CharacterAdapter(characterList)
-//                    }
-//                } else {
-//                    Toast.makeText(requireContext(), "onResponse: FAILURE!", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<ResponseBody>>, t: Throwable) {
-//                Toast.makeText(requireContext(), "onFailure: FAILURE!", Toast.LENGTH_SHORT).show()
-//            }
-//        })
-//    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val listCart = mutableListOf<DataCart>(
+            DataCart("Burger 1", "Resto Burger 1", 1, "https://foodish-api.com/images/burger/burger12.jpg"),
+            DataCart("Burger 2", "Resto Burger 2", 2, "https://foodish-api.com/images/burger/burger13.jpg"),
+            DataCart("Burger 3", "Resto Burger 3", 3, "https://foodish-api.com/images/burger/burger14.jpg")
+        )
+
+        with (binding) {
+            rvCart.layoutManager = LinearLayoutManager(requireContext())
+            rvCart.adapter = RVCartAdapter(listCart)
+            rvCart.setHasFixedSize(true)
+        }
+    }
 }

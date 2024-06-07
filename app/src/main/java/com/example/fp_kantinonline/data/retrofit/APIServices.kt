@@ -1,6 +1,5 @@
 package com.example.fp_kantinonline.data.retrofit
 
-import com.example.fp_kantinonline.data.remote.DataFoodImageRandom
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.GET

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.fp_kantinonline.data.remote.DataIconDashboard
 import com.example.fp_kantinonline.data.remote.DataListFood
 import com.example.fp_kantinonline.databinding.RvListBinding
 
@@ -16,7 +17,10 @@ class RVListFoodAdapter (
     inner class ListViewHolder(private val binding: RvListBinding)
         : RecyclerView.ViewHolder(binding.root) {
         fun bind(food: DataListFood) {
-            binding.ivFood.setImageBitmap(food.foodImage.getBitmap())
+            Glide.with(itemView.context)
+                .load(food.foodImage)
+                .skipMemoryCache(true)
+                .into(binding.ivFood)
             binding.tvFoodName.text = food.foodName
             binding.tvRestaurant.text = food.foodName
         }
