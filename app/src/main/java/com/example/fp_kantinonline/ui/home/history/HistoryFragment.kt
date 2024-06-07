@@ -6,10 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.fp_kantinonline.data.remote.DataCart
 import com.example.fp_kantinonline.data.remote.DataHistory
 import com.example.fp_kantinonline.databinding.FragmentHistoryBinding
-import com.example.fp_kantinonline.ui.home.cart.RVCartAdapter
 
 class HistoryFragment : Fragment() {
     private lateinit var binding: FragmentHistoryBinding

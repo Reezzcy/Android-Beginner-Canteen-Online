@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.fp_kantinonline.databinding.ActivityLoginBinding
 import com.example.fp_kantinonline.ui.home.HomeActivity
-import com.example.fp_kantinonline.ui.home.profile.ProfileFragment
 import com.google.android.material.snackbar.Snackbar
 
 class LoginActivity : AppCompatActivity() {

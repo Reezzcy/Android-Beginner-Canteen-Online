@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fp_kantinonline.data.remote.DataIconDashboard
 import com.example.fp_kantinonline.databinding.FragmentDashboardBinding
 import com.example.fp_kantinonline.ui.listFood.ListFoodActivity
