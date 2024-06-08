@@ -34,7 +34,7 @@ class DashboardFragment : Fragment(), RVIconAdapter.OnItemClickListener {
         }
 
         with (binding) {
-            rvIcon.layoutManager = GridLayoutManager(rvIcon.context, 5)
+            rvIcon.layoutManager = GridLayoutManager(rvIcon.context, 3)
             rvIcon.setHasFixedSize(true)
             val adapter = RVIconAdapter(listIconDashboard)
             rvIcon.adapter = adapter.apply { listener = this@DashboardFragment }
